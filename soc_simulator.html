@@ -10,16 +10,15 @@
             --panel-color: #16213e;
             --accent-color: #0f3460;
             --text-color: #e94560;
-            --white: #ffffff;
-            --green: #4caf50;
-            --red: #f44336;
-            --yellow: #ffeb3b;
+            --light-text: #f1f1f1;
+            --success-color: #4cc9f0;
+            --warning-color: #f72585;
         }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--bg-color);
-            color: var(--white);
+            color: var(--light-text);
             margin: 0;
             padding: 20px;
             display: flex;
@@ -30,7 +29,7 @@
         h1 {
             color: var(--text-color);
             text-shadow: 0 0 10px rgba(233, 69, 96, 0.5);
-            margin-bottom: 10px;
+            margin-bottom: 30px;
         }
 
         .container {
@@ -41,566 +40,558 @@
             width: 100%;
         }
 
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+
         .panel {
             background-color: var(--panel-color);
             border-radius: 10px;
             padding: 20px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
             border: 1px solid var(--accent-color);
-        }
-
-        .full-width {
-            grid-column: span 2;
         }
 
         h2 {
             border-bottom: 2px solid var(--text-color);
-            padding-bottom: 5px;
+            padding-bottom: 10px;
             margin-top: 0;
             font-size: 1.2rem;
         }
 
         .control-group {
             margin-bottom: 15px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            background: rgba(0,0,0,0.2);
+            padding: 10px;
+            border-radius: 5px;
         }
 
         label {
             display: block;
             margin-bottom: 5px;
             font-weight: bold;
+            color: var(--success-color);
+        }
+
+        .sub-label {
+            font-size: 0.8rem;
             color: #aaa;
+            margin-bottom: 8px;
+            display: block;
         }
 
         select, input[type="range"] {
             width: 100%;
             padding: 8px;
-            background: var(--bg-color);
+            background-color: var(--bg-color);
             border: 1px solid var(--accent-color);
             color: white;
             border-radius: 4px;
             margin-bottom: 10px;
         }
 
-        .slider-container {
-            display: flex;
-            align-items: center;
-            gap: 10px;
+        input[type="range"] {
+            padding: 0;
+            height: 10px;
+            cursor: pointer;
         }
 
         .value-display {
-            min-width: 40px;
-            text-align: right;
+            float: right;
             color: var(--text-color);
             font-weight: bold;
         }
 
         button {
+            width: 100%;
+            padding: 15px;
             background-color: var(--text-color);
             color: white;
             border: none;
-            padding: 15px 30px;
-            font-size: 1.2rem;
             border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: bold;
             cursor: pointer;
             transition: transform 0.1s, box-shadow 0.1s;
-            width: 100%;
-            font-weight: bold;
+            margin-top: 20px;
         }
 
         button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 0 15px rgba(233, 69, 96, 0.6);
+            box-shadow: 0 5px 15px rgba(233, 69, 96, 0.4);
         }
 
         button:active {
             transform: translateY(0);
         }
 
-        /* Results Area */
+        .result-box {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 5px;
+        }
+
         .stat-row {
             display: flex;
             justify-content: space-between;
             margin-bottom: 8px;
-            font-size: 0.9rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 4px;
         }
 
         .stat-value {
             font-weight: bold;
+            color: var(--success-color);
         }
 
-        .score-box {
-            text-align: center;
-            padding: 20px;
-            background: rgba(0,0,0,0.2);
-            border-radius: 8px;
-            margin-top: 20px;
+        .alert {
+            color: var(--warning-color);
+            font-size: 0.9rem;
+            margin-top: 5px;
+            min-height: 1.2em;
         }
 
-        .score-big {
-            font-size: 2.5rem;
+        .chip-visual {
+            width: 200px;
+            height: 200px;
+            background: #2a2a2a;
+            margin: 20px auto;
+            position: relative;
+            border: 4px solid #gold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            background-image: 
+                linear-gradient(45deg, #333 25%, transparent 25%), 
+                linear-gradient(-45deg, #333 25%, transparent 25%), 
+                linear-gradient(45deg, transparent 75%, #333 75%), 
+                linear-gradient(-45deg, transparent 75%, #333 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+        }
+
+        .chip-logo {
+            background: var(--panel-color);
+            padding: 10px 20px;
+            border: 2px solid var(--text-color);
+            color: var(--text-color);
             font-weight: bold;
-            color: var(--white);
+            transform: rotate(-15deg);
+            z-index: 2;
         }
 
-        .score-label {
-            font-size: 0.9rem;
-            color: #aaa;
+        .cores-visual {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            align-content: center;
+            justify-content: center;
+            gap: 2px;
+            opacity: 0.3;
         }
 
-        .bar-container {
-            width: 100%;
-            background-color: #333;
-            height: 10px;
-            border-radius: 5px;
-            margin-top: 5px;
-            overflow: hidden;
+        .core-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: var(--success-color);
         }
+        .core-dot.big { background-color: var(--text-color); }
+        .core-dot.mid { background-color: #f72585; }
 
-        .bar-fill {
-            height: 100%;
-            background-color: var(--green);
-            width: 0%;
-            transition: width 0.5s ease, background-color 0.5s ease;
-        }
-
-        .comment {
-            margin-top: 15px;
-            padding: 10px;
-            background: rgba(255,255,255,0.05);
-            border-left: 4px solid var(--text-color);
-            font-style: italic;
-            font-size: 0.9rem;
-        }
-
-        .cost-warning {
-            color: var(--red);
-            font-size: 0.8rem;
-            margin-top: 5px;
-        }
-
-        .arch-info {
-            font-size: 0.8rem;
-            color: #888;
-            margin-top: 2px;
-        }
     </style>
 </head>
 <body>
 
     <h1>SoC Architect Simulator</h1>
-    <p style="color: #aaa; margin-bottom: 20px;">バランスの取れたスマートフォン用プロセッサを設計せよ。</p>
 
     <div class="container">
-        <!-- Configuration Panel -->
+        <!-- Design Panel -->
         <div class="panel">
-            <h2>1. CPU クラスター構成</h2>
-            <div class="control-group">
-                <label>製造プロセス (nm)</label>
-                <select id="processNode" onchange="calculate()">
-                    <option value="12">12nm (旧世代・安価・発熱大)</option>
-                    <option value="7">7nm (標準・バランス)</option>
-                    <option value="5">5nm (高性能・高コスト)</option>
-                    <option value="3">3nm (最先端・超高コスト・高効率)</option>
-                </select>
-                <div class="arch-info">微細化ほど効率が向上しますが、製造コストが跳ね上がります。</div>
-            </div>
+            <h2>SoC 設計パラメータ</h2>
 
             <div class="control-group">
-                <label>スーパープライムコア (最上位)</label>
-                <div class="slider-container">
-                    <input type="range" id="primeCount" min="0" max="4" value="0" step="1" oninput="updateDisplay('primeVal', this.value); calculate()">
-                    <span id="primeVal" class="value-display">0</span>
-                </div>
-                <select id="primeType" onchange="calculate()">
-                    <option value="none">なし</option>
-                    <option value="p1">X-Gen 1 (前世代旗舰)</option>
-                    <option value="p2">X-Gen 2 (現行旗舰)</option>
-                    <option value="p3">X-Gen 3 (次世代旗舰)</option>
+                <label>製造プロセス <span id="proc-val" class="value-display">4nm</span></label>
+                <span class="sub-label">微細化ほど高性能・低消費電力だが、コストが跳ね上がる</span>
+                <select id="process-node" onchange="calculate()">
+                    <option value="12">12nm (旧世代/低コスト)</option>
+                    <option value="8">8nm (ミドルレンジ)</option>
+                    <option value="6">6nm (コスパ良)</option>
+                    <option value="4" selected>4nm (フラッグシップ)</option>
+                    <option value="3">3nm (最先端/超高コスト)</option>
                 </select>
             </div>
 
             <div class="control-group">
-                <label>パフォーマンスコア (中核)</label>
-                <div class="slider-container">
-                    <input type="range" id="perfCount" min="0" max="8" value="4" step="1" oninput="updateDisplay('perfVal', this.value); calculate()">
-                    <span id="perfVal" class="value-display">4</span>
+                <label>CPU クラスタ構成</label>
+                <span class="sub-label">コア数のバランスを調整してください</span>
+                
+                <label>プライムコア (超大物) <span id="prime-val" class="value-display">0</span></label>
+                <input type="range" id="prime-cores" min="0" max="4" value="0" step="1" oninput="calculate()">
+                <span class="sub-label">Cortex-X4 クラス。爆発的な性能だが発熱・消費電力大</span>
+
+                <label>パフォーマンスコア (大物) <span id="perf-val" class="value-display">4</span></label>
+                <input type="range" id="perf-cores" min="0" max="8" value="4" step="1" oninput="calculate()">
+                <span class="sub-label">Cortex-A720 クラス。メインの処理性能</span>
+
+                <label>エフィシェンシーコア (小物) <span id="eff-val" class="value-display">4</span></label>
+                <input type="range" id="eff-cores" min="0" max="8" value="4" step="1" oninput="calculate()">
+                <span class="sub-label">Cortex-A520 クラス。待機時・軽作業用。省電力</span>
+                
+                <div style="margin-top:5px; font-size:0.9em; color:#aaa;">
+                    総コア数: <span id="total-cores">8</span>
                 </div>
-                <select id="perfType" onchange="calculate()">
-                    <option value="none">なし</option>
-                    <option value="m1">A-76 Class (旧世代)</option>
-                    <option value="m2">A-78 Class (標準)</option>
-                    <option value="m3">A-80 Class (高性能)</option>
+            </div>
+
+            <div class="control-group">
+                <label>CPU クロック周波数 <span id="freq-val" class="value-display">3.0 GHz</span></label>
+                <input type="range" id="cpu-freq" min="1.0" max="4.5" value="3.0" step="0.1" oninput="calculate()">
+                <span class="sub-label">高くすると性能向上するが、発熱と消費電力が指数関数的に増加</span>
+            </div>
+
+            <div class="control-group">
+                <label>GPU 性能レベル <span id="gpu-val" class="value-display">Mid-Range</span></label>
+                <select id="gpu-tier" onchange="calculate()">
+                    <option value="1">Integrated (描画機能なし級)</option>
+                    <option value="2">Entry (Mali-G57 級)</option>
+                    <option value="3" selected>Mid-Range (Mali-G610 級)</option>
+                    <option value="4">High-End (Immortalis 級)</option>
+                    <option value="5">Ultra (RayTracing 対応級)</option>
                 </select>
             </div>
 
             <div class="control-group">
-                <label>エフィシェンシーコア (省電力)</label>
-                <div class="slider-container">
-                    <input type="range" id="effCount" min="0" max="8" value="4" step="1" oninput="updateDisplay('effVal', this.value); calculate()">
-                    <span id="effVal" class="value-display">4</span>
-                </div>
-                <select id="effType" onchange="calculate()">
-                    <option value="e1">A-53 Class (旧世代・低スペ)</option>
-                    <option value="e2">A-55 Class (標準)</option>
-                    <option value="e3">A-60 Class (新世代)</option>
+                <label>メモリ規格 <span id="mem-val" class="value-display">LPDDR4X</span></label>
+                <select id="mem-tier" onchange="calculate()">
+                    <option value="1">LPDDR4X (低速)</option>
+                    <option value="2">LPDDR5 (標準)</option>
+                    <option value="3" selected>LPDDR5X (高速)</option>
+                    <option value="4">LPDDR5T (超高速)</option>
                 </select>
+                <span class="sub-label">CPU/GPU の性能を引き出すには帯域幅が必要</span>
             </div>
             
-            <div style="font-size: 0.8rem; color: #aaa; margin-bottom: 15px;">
-                ※総コア数は 4〜12 個を推奨します。
-            </div>
-
-            <h2>2. GPU & メモリ</h2>
             <div class="control-group">
-                <label>GPU 構成 (コア数/規模)</label>
-                <select id="gpuConfig" onchange="calculate()">
-                    <option value="low">エントリー (2-4 コア相当)</option>
-                    <option value="mid" selected>ミドルレンジ (6-8 コア相当)</option>
-                    <option value="high">ハイエンド (10-12 コア相当)</option>
-                    <option value="ultra">フラッグシップ (16+ コア相当)</option>
-                </select>
-            </div>
-
-            <div class="control-group">
-                <label>メモリ規格 (帯域幅)</label>
-                <select id="memConfig" onchange="calculate()">
-                    <option value="lp4x">LPDDR4X (低速・安価)</option>
-                    <option value="lp5" selected>LPDDR5 (標準)</option>
-                    <option value="lp5x">LPDDR5X (高速)</option>
-                    <option value="lp6">LPDDR6 (超高速・高消費)</option>
-                </select>
-            </div>
-
-            <h2>3. 通信・その他</h2>
-            <div class="control-group">
-                <label>モデム/通信規格</label>
-                <select id="modemConfig" onchange="calculate()">
-                    <option value="4g">4G LTE (Cat.18)</option>
-                    <option value="5g_mid" selected>5G Sub-6 (標準)</option>
-                    <option value="5g_mm">5G mmWave + Wi-Fi 7 (最高速)</option>
-                </select>
-            </div>
-        </div>
-
-        <!-- Results Panel -->
-        <div class="panel">
-            <h2>設計評価ダッシュボード</h2>
-            
-            <div class="score-box">
-                <div class="score-label">総合ベンチマークスコア (AnTuTu 想定)</div>
-                <div id="totalScore" class="score-big">0</div>
-                <div class="score-label">推定 BOM コスト (チップ単体)</div>
-                <div id="totalCost" class="score-big" style="color: var(--yellow)">$0</div>
-            </div>
-
-            <div style="margin-top: 20px;">
-                <div class="stat-row">
-                    <span>CPU 性能</span>
-                    <span id="cpuScore" class="stat-value">0</span>
+                <label>その他機能</label>
+                <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                    <label style="font-weight:normal;"><input type="checkbox" id="feat-5g" checked onchange="calculate()"> 5G Modem</label>
+                    <label style="font-weight:normal;"><input type="checkbox" id="feat-wifi7" onchange="calculate()"> Wi-Fi 7</label>
+                    <label style="font-weight:normal;"><input type="checkbox" id="feat-ai" checked onchange="calculate()"> 強力な NPU</label>
                 </div>
-                <div class="bar-container"><div id="cpuBar" class="bar-fill"></div></div>
-            </div>
-
-            <div style="margin-top: 10px;">
-                <div class="stat-row">
-                    <span>GPU 性能</span>
-                    <span id="gpuScore" class="stat-value">0</span>
-                </div>
-                <div class="bar-container"><div id="gpuBar" class="bar-fill"></div></div>
-            </div>
-
-            <div style="margin-top: 10px;">
-                <div class="stat-row">
-                    <span>エネルギー効率 (100: 最高)</span>
-                    <span id="effScore" class="stat-value">0</span>
-                </div>
-                <div class="bar-container"><div id="effBar" class="bar-fill"></div></div>
-            </div>
-
-            <div style="margin-top: 10px;">
-                <div class="stat-row">
-                    <span>発熱リスク (0: 安全，100: 危険)</span>
-                    <span id="heatScore" class="stat-value">0</span>
-                </div>
-                <div class="bar-container"><div id="heatBar" class="bar-fill" style="background-color: var(--red);"></div></div>
-            </div>
-
-            <div id="marketComment" class="comment">
-                設計を開始してください。
             </div>
 
             <button onclick="finalizeDesign()">設計を確定する</button>
         </div>
 
-        <div class="panel full-width">
-            <h2>技術仕様詳細</h2>
-            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; font-size: 0.9rem;">
-                <div>
-                    <strong>ダイサイズ概算:</strong> <span id="dieSize">0</span> mm²
+        <!-- Result Panel -->
+        <div class="panel">
+            <h2>シミュレーション結果</h2>
+            
+            <div class="chip-visual">
+                <div class="cores-visual" id="cores-viz"></div>
+                <div class="chip-logo" id="chip-name">MT-XXXX</div>
+            </div>
+
+            <div class="result-box">
+                <div class="stat-row">
+                    <span>AnTuTu 想定スコア:</span>
+                    <span id="score-antutu" class="stat-value">-</span>
                 </div>
-                <div>
-                    <strong>ピーク消費電力:</strong> <span id="powerDraw">0</span> W
+                <div class="stat-row">
+                    <span>GeekBench Single:</span>
+                    <span id="score-gb-single" class="stat-value">-</span>
                 </div>
-                <div>
-                    <strong>ターゲット市場:</strong> <span id="targetMarket">未定</span>
+                <div class="stat-row">
+                    <span>GeekBench Multi:</span>
+                    <span id="score-gb-multi" class="stat-value">-</span>
                 </div>
+                <div class="stat-row">
+                    <span>3DMark Wild Life:</span>
+                    <span id="score-3dmk" class="stat-value">-</span>
+                </div>
+            </div>
+
+            <div class="result-box">
+                <div class="stat-row">
+                    <span>推定消費電力 (ピーク):</span>
+                    <span id="power-draw" class="stat-value" style="color:white">- W</span>
+                </div>
+                <div class="stat-row">
+                    <span>発熱リスク:</span>
+                    <span id="thermal-risk" class="stat-value">-</span>
+                </div>
+                <div class="alert" id="thermal-alert"></div>
+            </div>
+
+            <div class="result-box">
+                <div class="stat-row">
+                    <span>推定 SoC コスト:</span>
+                    <span id="cost-est" class="stat-value" style="color:var(--warning-color)">- $</span>
+                </div>
+                <div class="stat-row">
+                    <span>コストパフォーマンス:</span>
+                    <span id="cp-ratio" class="stat-value">-</span>
+                </div>
+                <div class="sub-label" style="margin-top:5px;">
+                    ※コストは純粋な製造原価の目安です。<br>
+                    高性能すぎるとコストが増大し、CP 値が低下します。
+                </div>
+            </div>
+            
+            <div id="final-comment" style="margin-top:20px; font-style:italic; color:#aaa; text-align:center;">
+                パラメータを変更して設計を開始してください。
             </div>
         </div>
     </div>
 
     <script>
         // Data Definitions
-        const CORE_SPECS = {
-            prime: {
-                'none': { perf: 0, eff: 0, cost: 0, heat: 0 },
-                'p1': { perf: 280, eff: 40, cost: 15, heat: 25 }, // X1 like
-                'p2': { perf: 350, eff: 50, cost: 25, heat: 30 }, // X2/X3 like
-                'p3': { perf: 450, eff: 60, cost: 40, heat: 35 }  // X4 like
-            },
-            perf: {
-                'none': { perf: 0, eff: 0, cost: 0, heat: 0 },
-                'm1': { perf: 120, eff: 70, cost: 8, heat: 12 },  // A76
-                'm2': { perf: 160, eff: 80, cost: 12, heat: 15 }, // A78
-                'm3': { perf: 220, eff: 85, cost: 18, heat: 20 }  // A80/A710
-            },
-            eff: {
-                'e1': { perf: 30, eff: 100, cost: 2, heat: 2 },   // A53
-                'e2': { perf: 45, eff: 110, cost: 3, heat: 3 },   // A55
-                'e3': { perf: 60, eff: 120, cost: 5, heat: 4 }    // A510/A60
-            }
+        const PROCESS_DATA = {
+            12: { name: "12nm", costMod: 0.4, powerMod: 1.5, perfMod: 0.8 },
+            8: { name: "8nm", costMod: 0.7, powerMod: 1.2, perfMod: 0.9 },
+            6: { name: "6nm", costMod: 0.9, powerMod: 1.0, perfMod: 1.0 },
+            4: { name: "4nm", costMod: 1.3, powerMod: 0.8, perfMod: 1.1 },
+            3: { name: "3nm", costMod: 2.0, powerMod: 0.6, perfMod: 1.25 }
         };
 
-        const PROCESS_NODES = {
-            '12': { mult: 1.0, costBase: 10, heatMult: 1.5, yield: 0.95 },
-            '7':  { mult: 1.3, costBase: 25, heatMult: 1.0, yield: 0.90 },
-            '5':  { mult: 1.6, costBase: 45, heatMult: 0.8, yield: 0.85 },
-            '3':  { mult: 2.0, costBase: 80, heatMult: 0.6, yield: 0.75 }
+        const MEM_DATA = {
+            1: { name: "LPDDR4X", bw: 25, cost: 10 },
+            2: { name: "LPDDR5", bw: 50, cost: 20 },
+            3: { name: "LPDDR5X", bw: 75, cost: 35 },
+            4: { name: "LPDDR5T", bw: 90, cost: 50 }
         };
 
-        const GPU_SPECS = {
-            'low': { score: 1500, cost: 5, power: 2 },
-            'mid': { score: 4000, cost: 15, power: 4 },
-            'high': { score: 8000, cost: 30, power: 7 },
-            'ultra': { score: 15000, cost: 60, power: 12 }
-        };
+        function updateDisplays() {
+            // Process
+            const proc = document.getElementById('process-node').value;
+            document.getElementById('proc-val').textContent = PROCESS_DATA[proc].name;
 
-        const MEM_SPECS = {
-            'lp4x': { bw: 30, cost: 5, penalty: 0.8 },
-            'lp5':  { bw: 50, cost: 10, penalty: 1.0 },
-            'lp5x': { bw: 70, cost: 18, penalty: 1.1 },
-            'lp6':  { bw: 100, cost: 35, penalty: 1.3 }
-        };
+            // Cores
+            const p = parseInt(document.getElementById('prime-cores').value);
+            const perf = parseInt(document.getElementById('perf-cores').value);
+            const eff = parseInt(document.getElementById('eff-cores').value);
+            
+            document.getElementById('prime-val').textContent = p;
+            document.getElementById('perf-val').textContent = perf;
+            document.getElementById('eff-val').textContent = eff;
+            document.getElementById('total-cores').textContent = p + perf + eff;
 
-        const MODEM_SPECS = {
-            '4g': { cost: 5, score: 0 },
-            '5g_mid': { cost: 15, score: 5000 },
-            '5g_mm': { cost: 30, score: 8000 }
-        };
+            // Freq
+            const freq = document.getElementById('cpu-freq').value;
+            document.getElementById('freq-val').textContent = freq + " GHz";
 
-        function updateDisplay(id, val) {
-            document.getElementById(id).innerText = val;
+            // GPU
+            const gpuOpts = ["Integrated", "Entry", "Mid-Range", "High-End", "Ultra"];
+            const gpuIdx = document.getElementById('gpu-tier').value - 1;
+            document.getElementById('gpu-val').textContent = gpuOpts[gpuIdx];
+
+            // Mem
+            const memIdx = document.getElementById('mem-tier').value;
+            document.getElementById('mem-val').textContent = MEM_DATA[memIdx].name;
+
+            updateCoreVisuals(p, perf, eff);
+        }
+
+        function updateCoreVisuals(p, perf, eff) {
+            const container = document.getElementById('cores-viz');
+            container.innerHTML = '';
+            
+            const addDot = (type) => {
+                const d = document.createElement('div');
+                d.className = `core-dot ${type}`;
+                container.appendChild(d);
+            };
+
+            for(let i=0; i<p; i++) addDot('big');
+            for(let i=0; i<perf; i++) addDot('mid');
+            for(let i=0; i<eff; i++) addDot('');
         }
 
         function calculate() {
-            // 1. Gather Inputs
-            const pNode = document.getElementById('processNode').value;
-            const pCount = parseInt(document.getElementById('primeCount').value);
-            const pType = document.getElementById('primeType').value;
-            const mCount = parseInt(document.getElementById('perfCount').value);
-            const mType = document.getElementById('perfType').value);
-            const eCount = parseInt(document.getElementById('effCount').value);
-            const eType = document.getElementById('effType').value;
+            updateDisplays();
+
+            // Get Inputs
+            const procNode = parseInt(document.getElementById('process-node').value);
+            const pCores = parseInt(document.getElementById('prime-cores').value);
+            const perfCores = parseInt(document.getElementById('perf-cores').value);
+            const effCores = parseInt(document.getElementById('eff-cores').value);
+            const freq = parseFloat(document.getElementById('cpu-freq').value);
+            const gpuTier = parseInt(document.getElementById('gpu-tier').value);
+            const memTier = parseInt(document.getElementById('mem-tier').value);
             
-            const gpuKey = document.getElementById('gpuConfig').value;
-            const memKey = document.getElementById('memConfig').value;
-            const modemKey = document.getElementById('modemConfig').value;
+            const has5G = document.getElementById('feat-5g').checked;
+            const hasWifi7 = document.getElementById('feat-wifi7').checked;
+            const hasAI = document.getElementById('feat-ai').checked;
 
-            // Validation: Total cores
-            const totalCores = pCount + mCount + eCount;
-            if (totalCores === 0) {
-                resetResults();
-                return;
-            }
+            const procInfo = PROCESS_DATA[procNode];
+            const memInfo = MEM_DATA[memTier];
 
-            // 2. Calculate Raw Stats
-            const procData = PROCESS_NODES[pNode];
+            // --- Calculation Logic ---
+
+            // 1. CPU Performance
+            // Base scores per core type (at 1.0GHz, 4nm)
+            const BASE_PRIME = 1800; // GB6 Single approx
+            const BASE_PERF = 1200;
+            const BASE_EFF = 800;
+
+            // Frequency scaling (non-linear penalty for high freq)
+            const freqScale = Math.pow(freq, 1.1); 
             
-            // CPU Calculation
-            let rawCpuPerf = 0;
-            let rawCpuEff = 0;
-            let cpuHeat = 0;
-            let cpuCost = 0;
+            let singleScore = 0;
+            if (pCores > 0) singleScore = BASE_PRIME * freqScale;
+            else if (perfCores > 0) singleScore = BASE_PERF * freqScale;
+            else if (effCores > 0) singleScore = BASE_EFF * freqScale;
+            
+            // Apply Process Node Efficiency to Perf
+            singleScore *= procInfo.perfMod;
 
-            // Prime
-            if (pType !== 'none') {
-                const spec = CORE_SPECS.prime[pType];
-                rawCpuPerf += spec.perf * pCount;
-                rawCpuEff += spec.eff * pCount;
-                cpuHeat += spec.heat * pCount;
-                cpuCost += spec.cost * pCount;
-            }
-            // Perf
-            if (mType !== 'none') {
-                const spec = CORE_SPECS.perf[mType];
-                rawCpuPerf += spec.perf * mCount;
-                rawCpuEff += spec.eff * mCount;
-                cpuHeat += spec.heat * mCount;
-                cpuCost += spec.cost * mCount;
-            }
-            // Eff
-            if (eType !== 'none') {
-                const spec = CORE_SPECS.eff[eType];
-                rawCpuPerf += spec.perf * eCount;
-                rawCpuEff += spec.eff * eCount;
-                cpuHeat += spec.heat * eCount;
-                cpuCost += spec.cost * eCount;
-            }
+            // Multi Score
+            let multiScore = (pCores * BASE_PRIME + perfCores * BASE_PERF + effCores * BASE_EFF) * freqScale * procInfo.perfMod;
 
-            // Apply Process Node Multipliers
-            // Newer nodes boost performance slightly but drastically improve efficiency and reduce heat
-            const cpuScoreFinal = Math.floor(rawCpuPerf * procData.mult);
-            const effScoreRaw = (rawCpuEff / totalCores) * procData.mult; // Average efficiency per core adjusted by node
-            const heatRaw = (cpuHeat * procData.heatMult);
-
-            // GPU Calculation
-            const gpuData = GPU_SPECS[gpuKey];
-            const gpuScoreFinal = Math.floor(gpuData.score * procData.mult); // GPU also benefits from node
+            // AnTuTu Approximation (CPU + GPU + Mem + UX)
+            // Simple heuristic
+            let cpuAntutu = multiScore * 35; 
+            
+            // GPU Score
+            const baseGpuScore = gpuTier * 150000; 
+            let gpuAntutu = baseGpuScore * procInfo.perfMod * (freq / 2.0); // GPU scales with process too
             
             // Memory Bottleneck Check
-            const memData = MEM_SPECS[memKey];
-            const totalBandwidthNeed = (cpuScoreFinal + gpuScoreFinal) / 100;
-            let bottleneckPenalty = 1.0;
-            if (totalBandwidthNeed > memData.bw * 2) {
-                bottleneckPenalty = 0.8; // Severe bottleneck
-            } else if (totalBandwidthNeed > memData.bw) {
-                bottleneckPenalty = 0.95; // Mild bottleneck
+            // High end CPU/GPU needs high bandwidth
+            const requiredBw = (multiScore / 1000) + (gpuTier * 10);
+            let bwPenalty = 1.0;
+            if (memInfo.bw < requiredBw) {
+                bwPenalty = memInfo.bw / requiredBw;
             }
 
-            // Modem
-            const modemData = MODEM_SPECS[modemKey];
+            let totalAntutu = (cpuAntutu + gpuAntutu) * bwPenalty;
+            if(hasAI) totalAntutu *= 1.05; // NPU bonus
 
-            // 3. Final Aggregation
-            const totalBenchmark = Math.floor((cpuScoreFinal + gpuScoreFinal + modemData.score) * bottleneckPenalty * memData.penalty);
+            // 2. Power & Thermal
+            // Dynamic Power ~ C * V^2 * F. Voltage scales somewhat with frequency and node.
+            // Simplified: Power = (CoreCount * Freq^2.5) / ProcessEfficiency
             
-            // Cost Calculation (Base + Components + Yield Loss)
-            const componentCost = cpuCost + gpuData.cost + memData.cost + modemData.cost;
-            const baseFabCost = procData.costBase;
-            const dieSizeEst = (totalCores * 2 + (gpuKey === 'ultra' ? 10 : gpuKey === 'high' ? 6 : 4)) * (pNode === '3' ? 0.6 : pNode === '12' ? 1.5 : 1.0);
-            // Yield affects effective cost per good chip
-            const finalCost = ((baseFabCost + componentCost) / procData.yield) * (dieSizeEst / 50); // Normalized factor
-
-            // Heat & Power
-            const totalPower = (heatRaw + gpuData.power) * (totalCores / 8); // Scaling with core count
-            const heatIndex = Math.min(100, Math.floor(totalPower * 5));
-
-            // Efficiency Index (0-100)
-            // High perf + Old node = Low efficiency. Low perf + New node = High efficiency.
-            let efficiencyIndex = Math.floor((effScoreRaw * 2) / (totalPower + 1) * 10);
-            efficiencyIndex = Math.min(100, Math.max(0, efficiencyIndex));
-
-            // 4. Update UI
-            document.getElementById('totalScore').innerText = totalBenchmark.toLocaleString();
-            document.getElementById('totalCost').innerText = '$' + finalCost.toFixed(2);
+            const primePower = pCores * Math.pow(freq, 2.5) * 2.5;
+            const perfPower = perfCores * Math.pow(freq, 2.3) * 1.5;
+            const effPower = effCores * Math.pow(freq, 2.0) * 0.8;
             
-            document.getElementById('cpuScore').innerText = cpuScoreFinal.toLocaleString();
-            document.getElementById('gpuScore').innerText = gpuScoreFinal.toLocaleString();
-            document.getElementById('effScore').innerText = efficiencyIndex;
-            document.getElementById('heatScore').innerText = heatIndex;
-
-            // Bars
-            setBar('cpuBar', cpuScoreFinal, 3000); // Scale approx
-            setBar('gpuBar', gpuScoreFinal, 15000);
-            setBar('effBar', efficiencyIndex, 100, true);
-            setBar('heatBar', heatIndex, 100, true);
-
-            // Details
-            document.getElementById('dieSize').innerText = dieSizeEst.toFixed(1);
-            document.getElementById('powerDraw').innerText = totalPower.toFixed(1);
-
-            generateComment(totalBenchmark, finalCost, heatIndex, efficiencyIndex, totalCores, pCount, mCount, eCount);
-        }
-
-        function setBar(id, val, max, isPercent = false) {
-            const el = document.getElementById(id);
-            let pct = (val / max) * 100;
-            if (!isPercent) pct = Math.min(100, pct);
+            let rawPower = (primePower + perfPower + effPower) * procInfo.powerMod;
+            rawPower += (gpuTier * 1.5); // GPU power
             
-            el.style.width = pct + '%';
+            // Features power
+            if(has5G) rawPower += 1.5;
+            if(hasWifi7) rawPower += 0.5;
+            if(hasAI) rawPower += 1.0;
+
+            const thermalRisk = rawPower > 9 ? "HIGH" : (rawPower > 6 ? "MEDIUM" : "LOW");
             
-            // Color logic for bars
-            if (id === 'heatBar') {
-                if (val > 80) el.style.backgroundColor = '#f44336';
-                else if (val > 50) el.style.backgroundColor = '#ffeb3b';
-                else el.style.backgroundColor = '#4caf50';
-            } else if (id === 'effBar') {
-                if (val < 30) el.style.backgroundColor = '#f44336';
-                else if (val < 60) el.style.backgroundColor = '#ffeb3b';
-                else el.style.backgroundColor = '#4caf50';
-            }
-        }
+            // Throttling simulation for benchmark
+            let throttlingFactor = 1.0;
+            if (thermalRisk === "HIGH") throttlingFactor = 0.75;
+            if (thermalRisk === "MEDIUM") throttlingFactor = 0.9;
 
-        function resetResults() {
-            document.getElementById('totalScore').innerText = "0";
-            document.getElementById('totalCost').innerText = "$0";
-            document.getElementById('marketComment').innerText = "コアを少なくとも1つ選択してください。";
-        }
+            const finalAntutu = Math.floor(totalAntutu * throttlingFactor);
+            const finalSingle = Math.floor(singleScore * throttlingFactor);
+            const finalMulti = Math.floor(multiScore * throttlingFactor);
+            const final3DMark = Math.floor((gpuAntutu / 100) * throttlingFactor);
 
-        function generateComment(score, cost, heat, eff, total, p, m, e) {
-            const commentEl = document.getElementById('marketComment');
-            let msg = "";
+            // 3. Cost
+            // Base die cost based on area (cores) + Node cost
+            const coreArea = (pCores * 4) + (perfCores * 2.5) + (effCores * 1);
+            const gpuArea = gpuTier * 3;
+            const totalArea = coreArea + gpuArea + 10; // 10 for misc
 
-            // Architecture Analysis
-            if (p > 0 && m === 0 && e === 0) {
-                msg += "[オールビッグ構成] 野心的な設計だ。マルチタスクでの発熱が懸念されるが、ピーク性能は怪物級になる。<br>";
-            } else if (p === 0 && m === 0) {
-                msg += "[オールリトル構成] MT6752のような伝説の再現か？発熱は少ないが、現代のアプリには力不足かもしれない。<br>";
-            } else if (p > 0 && m > 0 && e > 0) {
-                msg += "[トライクラスタ] 最もバランスの良い現代的な構成だ。制御ロジックが複雑になるが、効率と性能を両立できる。<br>";
-            }
+            let dieCost = totalArea * procInfo.costMod * 2.5;
+            
+            // Feature costs
+            if(has5G) dieCost += 15;
+            if(hasWifi7) dieCost += 5;
+            if(hasAI) dieCost += 8;
+            
+            // Memory cost added separately for "SoC Package" estimate or just BOM
+            // Let's assume SoC price includes package but not RAM chip itself, but advanced packaging costs more
+            dieCost += memInfo.cost * 0.5; 
 
-            // Market Positioning
-            if (score < 300000) {
-                msg += "市場評価: エントリー機向け。SNSと動画視聴には十分だが、ゲームには不向き。";
-                document.getElementById('targetMarket').innerText = "エントリー (〜$150端末)";
-            } else if (score < 600000) {
-                msg += "市場評価: ミドルレンジ。コストパフォーマンスに優れ、最も売れ筋となる層を狙える。";
-                document.getElementById('targetMarket').innerText = "ミドル (〜$400端末)";
-            } else if (score < 1000000) {
-                msg += "市場評価: ハイエンド。ゲーマーやパワーユーザーに支持されるだろう。";
-                document.getElementById('targetMarket').innerText = "ハイエンド (〜$800端末)";
+            const estimatedPrice = dieCost.toFixed(2);
+            
+            // CP Ratio (Performance per Dollar)
+            const cpRatio = (finalAntutu / dieCost).toFixed(1);
+
+            // --- Update UI ---
+            document.getElementById('score-antutu').textContent = finalAntutu.toLocaleString();
+            document.getElementById('score-gb-single').textContent = finalSingle.toLocaleString();
+            document.getElementById('score-gb-multi').textContent = finalMulti.toLocaleString();
+            document.getElementById('score-3dmk').textContent = final3DMark.toLocaleString();
+
+            document.getElementById('power-draw').textContent = rawPower.toFixed(1) + " W";
+            
+            const riskEl = document.getElementById('thermal-risk');
+            riskEl.textContent = thermalRisk;
+            riskEl.style.color = thermalRisk === "HIGH" ? "#f72585" : (thermalRisk === "MEDIUM" ? "#fca311" : "#4cc9f0");
+
+            const alertEl = document.getElementById('thermal-alert');
+            if(thermalRisk === "HIGH") {
+                alertEl.textContent = "警告：冷却が追いつかず、ベンチマーク中にスロットリングが発生します！";
+            } else if (thermalRisk === "MEDIUM") {
+                alertEl.textContent = "注意：高負荷持続時に若干の性能低下が発生する可能性があります。";
             } else {
-                msg += "市場評価: フラッグシップキラー。競合他社を圧倒する性能だが、端末価格が高騰するリスクあり。";
-                document.getElementById('targetMarket').innerText = "フラッグシップ ($1000+ 端末)";
+                alertEl.textContent = "";
             }
 
-            // Warnings
-            if (cost > 80) {
-                msg += "<br><span class='cost-warning'>警告: チップコストが高すぎます。端末の利益を圧迫します。</span>";
-            }
-            if (heat > 85) {
-                msg += "<br><span class='cost-warning'>警告: 発熱が深刻です。サーマルスロットリングで性能が発揮できない可能性があります。</span>";
-            }
-            if (eff < 30 && score > 500000) {
-                msg += "<br><span class='cost-warning'>注意: 性能は高いですが、バッテリー持ちが非常に悪くなるでしょう。</span>";
-            }
+            document.getElementById('cost-est').textContent = "$" + estimatedPrice;
+            document.getElementById('cp-ratio').textContent = cpRatio;
 
-            commentEl.innerHTML = msg;
+            // Generate Name
+            let series = "A";
+            if (pCores > 0) series = "X";
+            else if (gpuTier >= 4) series = "U";
+            
+            const modelNum = Math.floor(finalAntutu / 10000);
+            document.getElementById('chip-name').textContent = `${series}-${modelNum}0`;
+            
+            document.getElementById('final-comment').textContent = "設計変更を検知しました。再計算完了。";
         }
 
         function finalizeDesign() {
-            const score = document.getElementById('totalScore').innerText;
-            const cost = document.getElementById('totalCost').innerText;
-            if (score === "0") {
-                alert("まず設計を完了させてください！");
+            const score = document.getElementById('score-antutu').textContent;
+            const cost = document.getElementById('cost-est').textContent;
+            const name = document.getElementById('chip-name').textContent;
+            
+            if(score === "-") {
+                alert("まずパラメータを設定してください。");
                 return;
             }
-            alert(`設計完了！\n想定ベンチマーク: ${score}\n推定コスト: ${cost}\n\nこの設計図は保存されました（妄想）。お疲れ様でした！`);
+
+            let msg = `【設計完了】\n製品名: ${name}\n想定スコア: ${score}\n製造コスト: ${cost}\n\n`;
+            
+            const antutu = parseInt(score.replace(/,/g, ''));
+            const costVal = parseFloat(cost.replace('$',''));
+            
+            if (antutu > 2000000 && costVal > 150) {
+                msg += "評価: 「怪物」\n圧倒的 성능ですが、搭載される端末は非常に高価になるでしょう。";
+            } else if (antutu < 400000 && costVal < 20) {
+                msg += "評価: 「ENTRY KING」\n驚異のコストパフォーマンス。格安スマホ市場を席巻できます。";
+            } else if (costVal > 100 && antutu < 1000000) {
+                msg += "評価: 「失敗作」\n高コストなのに性能が伴っていません。バランスを見直しましょう。";
+            } else {
+                msg += "評価: 「バランス良」\n市場で十分に戦える優れた SoC です。";
+            }
+
+            alert(msg);
         }
 
-        // Initial calc
-        calculate();
+        // Initialize
+        window.onload = function() {
+            calculate();
+        };
     </script>
 </body>
 </html>
